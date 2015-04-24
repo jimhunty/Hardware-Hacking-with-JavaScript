@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hello</title>
+	<style>
+		body {
+			background-color: #74BCDD;
+		}
+
+		h1 {
+			font-family: 'Lato', sans-serif;
+			font-size: 120px;
+			font-weight: 100;
+			color: white;
+			text-align: center;
+			margin: 60px;
+		}
+
+		h1:before{
+			content: attr(class) ":";
+			font-size: 22px;
+			position: relative;
+			top: -69px;
+			left: 0;
+			text-transform: uppercase;
+		}
+</style>
+</head>
+<body>
+	<h1 class="temperature">0ºC</h1>
+	<h1 class="light">0%</h1>
+
+	<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+	<script>
+		var socket = io(),
+			temperature = document.querySelector(".temperature"),
+			light = document.querySelector(".light");
+
+		socket.on('SensorReadings', function (message) {
+			console.log(message);
+			temperature.innerHTML = parseInt(message.temp) + "ºC";
+			light.innerHTML = (100 - parseInt(message.light / 10.24)) + "%";
+		});
+	</script>
+
+</body>
+</html>

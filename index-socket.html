@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hello</title>
+	<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+	<script>
+		var socket = io();
+
+		socket.on('SensorReadings', function (message) {
+			console.log(message);
+		});
+	</script>
+</head>
+<body>
+	Hello!
+</body>
+</html>

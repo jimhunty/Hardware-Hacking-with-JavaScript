@@ -12,11 +12,11 @@ board = new jfive.Board();
 board.on("ready", function() {
 	// we create a new sensor instance and define the sensor type and the pin it’s connected to
 	var tempSensor = new jfive.Temperature({
-		controller: "LM35",
+		controller: "TMP36",
 		pin: "A0"
 	});
 
-	// we add an event listener to the sensor and handle the data
+	// we add an event listener to the sensor and handle the incoming data
 	tempSensor.on("data", function(err, data) {
 		// the data object also has a fahrenheit property if that’s what we are after 
 		readings.temp = data.celsius;
@@ -29,9 +29,9 @@ board.on("ready", function() {
 		freq: 250
 	});
 
-	// we add an event listener to the sensor and handle the data reading
+	// we add an event listener to the sensor and handle the incoming data
 	lightSensor.on("data", function() {
 		readings.light = this.value; 
-		console.log(readings.light);
+		// console.log(readings.light);
 	});
 });
