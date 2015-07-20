@@ -6,6 +6,7 @@ var board = new jfive.Board();
 
 var board, tempSensor, lightSensor, socket,
 	connected = false;
+
 var readings = {
 	temp: 0,
 	light: 0
@@ -25,7 +26,7 @@ board.on("ready", function() {
 	console.log('board has connected'); 	
 
 	var tempSensor = new jfive.Temperature({
-		controller: "TMP36",
+		controller: "LM35",
 		pin: "A0"
 	});
 	
