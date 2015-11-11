@@ -4,12 +4,13 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 app.get('/', function(req, res){
-	res.sendFile(__dirname + '/index.html');
+	res.sendFile(__dirname + '/index-socket.html');
 });
 
 // We establish the Web Socket connection with the browser
 io.on('connection', function(socket){
 	console.log('a user has connected');
+	// We immediately send a message through the socket
 	socket.emit('Server message', "Hello from the Server!");
 });
 

@@ -3,9 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Hello</title>
+	<link href='http://fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
 	<style>
 		body {
-			background-color: #74BCDD;
+			background-color: hsl(0, 60%, 65%);
+			transition: background-color 1s;
 		}
 
 		h1 {
@@ -29,19 +31,21 @@
 </head>
 <body>
 	<h1 class="temperature">0ºC</h1>
-	<h1 class="light">0%</h1>
 
 	<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 	<script>
 		var socket = io(),
-			temperature = document.querySelector(".temperature"),
-			light = document.querySelector(".light");
+			temperature = document.querySelector(".temperature");
 
-		socket.on('SensorReadings', function (message) {
-			console.log(message);
-			temperature.innerHTML = parseInt(message.temp) + "ºC";
-			light.innerHTML = (100 - parseInt(message.light / 10.24)) + "%";
+		socket.on('Temperature reading', function(message) {
+			// Rounding down the decimal values and adding ºC 
+			temperature.innerHTML = parseInt(message) + "ºC";
+
+			// Calculating the hue for the background colour and changing it
+			var hue = 200 - (parseInt(message) * 5);
+			document.body.style.backgroundColor = "hsl(" + hue + ", 60%, 65%)";
 		});
+
 	</script>
 
 </body>

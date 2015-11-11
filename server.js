@@ -4,13 +4,8 @@ var io = require('socket.io')(http);
 var jfive = require("johnny-five");
 var board = new jfive.Board();
 
-var board, tempSensor, lightSensor, socket,
+var board, socket,
 	connected = false;
-
-var readings = {
-	temp: 0,
-	light: 0
-}
 
 app.get('/', function(req, res){
 	res.sendFile(__dirname + '/index.html');
@@ -18,7 +13,9 @@ app.get('/', function(req, res){
 
 io.on('connection', function(s){
 	console.log('a user has connected');
+	// tracking connection
 	connected = true;
+	// saving this for the board on ready callback function
 	socket = s;
 });
 
@@ -26,23 +23,13 @@ board.on("ready", function() {
 	console.log('board has connected'); 	
 
 	var tempSensor = new jfive.Temperature({
-		controller: "LM35",
+		controller: "TMP36",
 		pin: "A0"
 	});
 	
-	tempSensor.on("data", function(err, data) {
-		readings.temp = data.celsius;
-		if(connected) socket.emit('SensorReadings', readings);
-	});  
-
-	lightSensor = new jfive.Sensor({
-		pin: "A1",
-		freq: 250
-	});
-
-	lightSensor.on("data", function(data) {
-		readings.light = this.value;
-		if(connected) socket.emit('SensorReadings', readings);
+	tempSensor.on("data", function() {
+		// We send the temperature when the browser is connected
+		if(connected) socket.emit('Temperature reading', this.celsius);
 	});
 });
 
