@@ -1,6 +1,6 @@
 {
-  "name": "Building-Physical-Experiences-with-JavaScript",
-  "description": "Smashing Magazine - Building-Physical-Experiences-with-JavaScript",
+  "name": "Hardware-Hacking-with-JavaScript",
+  "description": "Smashing Magazine - Hardware Hacking with JavaScript",
   "version": "0.0.1",
   "homepage": "http://www.james-miller.co.uk/",
   "keywords": [
@@ -13,9 +13,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/jimhunty/Building-Physical-Experiences-with-JavaScript.git"
+    "url": "git://github.com/jimhunty/Hardware-Hacking-with-JavaScript.git"
   },
-  "bugs": "http://github.com/jimhunty/Building-Physical-Experiences-with-JavaScript/issues",
+  "bugs": "http://github.com/jimhunty/Hardware-Hacking-with-JavaScript.git/issues",
   "license": "MIT",
   "dependencies": {
     "express": "^4.13.3",
