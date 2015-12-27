@@ -22,7 +22,7 @@ io.on('connection', function(s){
 board.on("ready", function() {
 	console.log('board has connected'); 	
 
-	var tempSensor = new jfive.Temperature({
+	var tempSensor = new jfive.Thermometer({
 		controller: "TMP36",
 		pin: "A0"
 	});

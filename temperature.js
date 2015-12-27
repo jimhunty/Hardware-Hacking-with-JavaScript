@@ -6,7 +6,7 @@ board = new jfive.Board();
 board.on("ready", function() {
 	// we create a new sensor instance and define the sensor type and the pin it’s connected to
 	// if you have an LM35 change it in the controller property
-	var tempSensor = new jfive.Temperature({
+	var tempSensor = new jfive.Thermometer({
 		controller: "TMP36",
 		pin: "A0"
 	});
