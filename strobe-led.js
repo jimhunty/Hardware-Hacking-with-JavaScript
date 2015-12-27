@@ -11,6 +11,6 @@ board.on("ready", function() {
 	led = new jfive.Led(10)
 
 	// The LED is strobed (turned on and off) every 1000 milliseconds
-	led.strobe(1000);
+	led.blink(1000);
 
 });
